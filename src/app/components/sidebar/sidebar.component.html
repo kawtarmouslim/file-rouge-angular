@@ -1,0 +1,207 @@
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="index.html">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#Clients-nav" data-bs-toggle="collapse" [routerLink]="['/clients']">
+        <i class="bi bi-gem"></i><span>clients</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#Utilisateurs-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-journal-text"></i><span>Utilisateurs</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li><!-- End user Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#Places-nav" data-bs-toggle="collapse" [routerLink]="['/places']">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Places</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li><!-- End places Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#Salles-nav" data-bs-toggle="collapse" [routerLink]="['/salles']">
+        <i class="bi bi-gem"></i><span>Salles</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li><!-- End salle Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#Films-nav" data-bs-toggle="collapse" [routerLink]="['/films']">
+        <i class="bi bi-gem"></i><span>Films</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li><!-- End film Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#Ticket-nav" data-bs-toggle="collapse" [routerLink]="['/tickets']">
+        <i class="bi bi-gem"></i><span>Ticket</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li><!-- End ticket Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#Projections-nav" data-bs-toggle="collapse" [routerLink]="['/projection']">
+        <i class="bi bi-gem"></i><span>Projections</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li><!-- End Projection Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="pages-login.html">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span>Login</span>
+      </a>
+    </li><!-- End Login Page Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="pages-blank.html">
+        <i class="bi bi-file-earmark"></i>
+        <span>Blank</span>
+      </a>
+    </li><!-- End Blank Page Nav -->
+
+  </ul>
+
+</aside><!-- End Sidebar--> <aside  class="sidebar">
+
+  <ul class="sidebar-nav" >
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="index.html">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#Clients-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-gem"></i><span>Clients</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="Clients-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+
+          <a routerLink="/add-client">Ajouter Client</a>
+
+        </li>
+
+      </ul>
+    </li>
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#Utilisateurs-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-gem"></i><span>Utilisateurs</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="Utilisateurs-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a routerLink="/listutilisateurs">Liste des Utilisateurs</a>
+        </li>
+        <li>
+          <a routerLink="/addutilisateur">Ajouter un Utilisateur</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#Places-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-gem"></i><span>Places</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="Places-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a routerLink="/listplaces">Liste des Places</a>
+        </li>
+        <li>
+          <a routerLink="/addplace">Ajouter un Places</a>
+        </li>
+      </ul>
+    </li>
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#Salles-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-gem"></i><span>Salles</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="Salles-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a routerLink="/listsalles">Liste des salles</a>
+        </li>
+        <li>
+          <a routerLink="/addplace">Ajouter un salle</a>
+        </li>
+      </ul>
+    </li>
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#Films-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-gem"></i><span>Films</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="Films-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+        <li>
+          <a routerLink="/listfilms">Liste des films</a>
+        </li>
+
+        <li>
+        <li>
+          <a routerLink="/addfilm">Ajouter un film</a>
+        </li>
+
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#Tickets-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-gem"></i><span>Tickets</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="Tickets-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a routerLink="/listtickets">Liste des tickets </a>
+        </li>
+        <li>
+
+          <a routerLink="/addticket"> Ajouter un tickrts</a>
+
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#Projections-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-gem"></i><span>Projections</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="Projections-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a routerLink="/listprojections">Liste des projections </a>
+        </li>
+        <li>
+          <a routerLink="/addprojection">Ajouter un projection</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="pages-contact.html">
+        <i class="bi bi-envelope"></i>
+        <span>Contact</span>
+      </a>
+    </li><!-- End Contact Page Nav -->
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="pages-login.html">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span>Login</span>
+      </a>
+    </li><!-- End Login Page Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="pages-error-404.html">
+        <i class="bi bi-dash-circle"></i>
+        <span>Error 404</span>
+      </a>
+    </li><!-- End Error 404 Page Nav -->
+  </ul>
+
+</aside><!-- End Sidebar-->
+
