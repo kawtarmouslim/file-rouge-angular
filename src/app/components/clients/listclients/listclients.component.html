@@ -1,0 +1,49 @@
+<div class="container-fluid mt-n10">
+  <div  class="card mb-4" >
+    <div class="card-header" >list des clients</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="col-sm-12">
+            <div class="d-flex align-items-center justify-content-start my-3"> <!-- Utilisation de classes Bootstrap pour aligner les éléments à gauche -->
+              <input type="text" class="form-control me-2" placeholder="Rechercher..." style="width: 65%">
+              <button class="btn btn-primary">Filtrer</button>
+              <a routerLink="/addSupplier" class="btn btn-primary ms-2">Ajouter client</a>
+            </div>
+          </div>
+          <table class="table table-bordered" >
+            <thead>
+            <tr class="table table-bordered text-center" >
+              <th scope="col" >Id</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Téléphone</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngIf="clients && clients.length > 0">
+              <tr *ngFor="let clientItem of clients">
+                <td>{{ clientItem.id }}</td>
+                <td>{{ clientItem.nom }}</td>
+                <td>{{ clientItem.tel }}</td>
+                <td>
+                  <a [routerLink]="'/updateSupplier/' + clientItem.id" class="btn btn-secondary btn-sm mr-2" title="Modifier" style="background: none; border: none; color: royalblue;">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+
+                  <button (click)="confirmAndDelete(clientItem)" class="btn btn-secondary btn-sm mr-2" title="Supprimer" style="background: none; border: none; color: red;">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
