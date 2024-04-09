@@ -1,22 +1,22 @@
 <div class="container-fluid mt-n10">
   <div class="card mb-4">
-    <div class="card-header">Modifier un Client</div>
+    <div class="card-header">Modifier un salle</div>
     <div class="card-body">
       <div class="row">
         <div class="col-sm-12">
           <div class="container mt-4">
 
-            <form [formGroup]="clientForm" (ngSubmit)="onSubmit()" >
+            <form [formGroup]="salleForm" (ngSubmit)="onSubmit()" >
               <div class="form-group">
                 <label >Nom :</label>
-                <input type="text" formControlName="nom" class="form-control" required>
+                <input type="text" formControlName="name" class="form-control" required>
               </div>
               <div *ngIf="nameError" class="text-danger">{{ nameError }}</div>
               <div class="form-group">
-                <label >Téléphone :</label>
-                <input type="text" formControlName="tel" class="form-control" required>
+                <label >Nombre salle :</label>
+                <input type="text" formControlName="nombrePlace" class="form-control" required>
               </div>
-              <button type="submit" class="btn btn-outline-primary">Enregistrer</button>
+              <button type="submit" class="btn btn-outline-primary">Modifier </button>
             </form>
           </div>
 
@@ -25,6 +25,7 @@
     </div>
   </div>
 </div>
+
 
 
 

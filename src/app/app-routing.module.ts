@@ -16,6 +16,8 @@ import { ListprojectionsComponent } from './components/projections/listprojectio
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import { ListclientsComponent } from './components/clients/listclients/listclients.component';
 import {ModifierclientComponent} from "./components/clients/modifierclient/modifierclient.component";
+import {ModifiersalleComponent} from "./components/salles/modifiersalle/modifiersalle.component";
+import {ModifierfilmComponent} from "./components/films/modifierfilm/modifierfilm.component";
 const routes: Routes = [
 
   { path: '', component: DashboardComponent },
@@ -36,7 +38,12 @@ const routes: Routes = [
   { path: 'addSupplier', component: AddClientComponent },
   { path: 'updateSupplier/:id', component: ModifierclientComponent },
   { path: 'supplier/all', component: ListclientsComponent },
-
+  { path: 'addSalle', component: AddsallesComponent },
+  { path: 'updateSalle/:id', component: ModifiersalleComponent },
+  { path: 'salle/all', component: ListsallesComponent },
+  { path: 'film/all', component: ListfilmsComponent },
+  { path: 'addFilm', component: AddfilmComponent },
+  { path: 'updateFilm/:id', component: ModifierfilmComponent },
 ];
 
 @NgModule({

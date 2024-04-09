@@ -25,6 +25,9 @@ import {DatePipe} from "@angular/common";
 
 import { ListclientsComponent } from './components/clients/listclients/listclients.component';
 import { ModifierclientComponent } from './components/clients/modifierclient/modifierclient.component';
+import { ModifiersalleComponent } from './components/salles/modifiersalle/modifiersalle.component';
+import { ModifierfilmComponent } from './components/films/modifierfilm/modifierfilm.component';
+
 
 
 @NgModule({
@@ -48,6 +51,9 @@ import { ModifierclientComponent } from './components/clients/modifierclient/mod
     ListprojectionsComponent,
     ListclientsComponent,
     ModifierclientComponent,
+    ModifiersalleComponent,
+    ModifierfilmComponent,
+
 
   ],
   imports: [

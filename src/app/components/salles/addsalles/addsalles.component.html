@@ -1,1 +1,26 @@
-<p>addsalles works!</p>
+<div class="container mt-n10">
+  <div class="card mb-4">
+    <div class="card-header">Ajouter Salle</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="container mt-4">
+            <form [formGroup]="salleForm" (ngSubmit)="onSubmit()">
+              <div class="form-group mb-3"> <!-- Ajout de la classe "mb-3" pour une marge après le champ "Nom" -->
+                <label for="nom">Nom :</label>
+                <input type="text" formControlName="name" id="nom" class="form-control" required>
+              </div>
+              <div *ngIf="nameError" class="text-danger">{{ nameError }}</div>
+              <div class="form-group mb-3"> <!-- Ajout de la classe "mb-3" pour une marge après le champ "Téléphone" -->
+                <label for="nombre place">Nombre place :</label>
+                <input type="text" formControlName="nombrePlace" id="nombre place" class="form-control" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Envoyer</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,1 +1,51 @@
-<p>addprojection works!</p>
+<div class="container-fluid mt-n10">
+  <div class="card mb-4">
+    <div class="card-header">Ajouter un nouveau Projection</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="container mt-4">
+            <form [formGroup]="projectionForm" (ngSubmit)="onSubmit()" class="row ">
+              <div class="form-group col-md-12">
+                <label for="dateProjection">Date Projection :</label>
+                <input type="datetime-local" id="dateProjection" class="form-control" formControlName="dateProjection" required>
+                <div *ngIf="projectionForm.get('dateProjection')?.invalid && (projectionForm.get('dateProjection')?.dirty || projectionForm.get('dateProjection')?.touched)" class="text-danger">
+                  La date de projection est requise.
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label for="prix">Prix :</label>
+                <input type="text" formControlName="prix" id="prix" class="form-control" required>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="salle">Salle :</label>
+                <select id="salle" class="form-control" formControlName="salleId">
+                  <option *ngFor="let salle of salles" [value]="salle.id" required>{{ salle.name }}</option>
+                </select>
+                <div *ngIf="projectionForm.get('salleId')?.invalid && (projectionForm.get('salleId')?.dirty || projectionForm.get('salleId')?.touched)" class="text-danger">
+                  La salle est requise.
+                </div>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="filmId">Film :</label>
+                <select id="filmId" class="form-control" formControlName="filmId">
+                  <option *ngFor="let film of films" [value]="film.id" required>{{ film.titre }}</option>
+                </select>
+                <div *ngIf="projectionForm.get('filmId')?.invalid && (projectionForm.get('filmId')?.dirty || projectionForm.get('filmId')?.touched)" class="text-danger">
+                  Le film est requis.
+                </div>
+              </div>
+
+              <div *ngIf="errorMessage" class="alert text-danger">
+                {{ errorMessage }}
+              </div>
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

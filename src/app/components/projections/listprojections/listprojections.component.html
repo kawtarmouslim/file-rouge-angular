@@ -1,1 +1,54 @@
-<p>listprojections works!</p>
+<div class="container-fluid mt-n10">
+  <div class="card mb-4">
+    <div class="card-header">Gestion des Projections</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="container mt-4">
+            <a routerLink="/addProjection" class="btn btn-light my-3">
+              <i class="fas fa-plus"></i> Ajouter une Projection
+            </a>
+
+            <table class="table table-bordered text-center">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th scope="col">Date Projection</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Salle</th>
+                <th scope="col">Film</th>
+                <th scope="col">Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let projection of projections">
+                <td>{{ projection.id}}</td>
+                <td>{{ projection.dateProjection | date:'yyyy/MM/dd' }}</td>
+                <td>{{ projection.prix }}</td>
+                <td>
+                  <td *ngIf="salles[projections.indexOf(projection)]">
+                    {{ salles[projections.indexOf(projection)].name }}
+                  </td>
+
+                <td>
+                  <td *ngIf="films[projections.indexOf(projection)]">
+                    {{ films[projections.indexOf(projection)].titre }}
+                  </td>
+
+                <td>
+                  <a [routerLink]="'/updateProjection/' + projection.id" class="btn btn-secondary btn-sm mr-2" title="Modifier">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                  <button (click)="confirmAndDelete(projection)" class="btn btn-outline-danger btn-sm" title="Supprimer">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

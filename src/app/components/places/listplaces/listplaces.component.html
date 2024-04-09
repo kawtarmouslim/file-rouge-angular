@@ -1,1 +1,51 @@
-<p>listplaces works!</p>
+<div class="container-fluid mt-n10">
+  <div class="card mb-4">
+    <div class="card-header">Liste des Places</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="d-flex align-items-center justify-content-start my-3">
+            <!-- Utilisation de classes Bootstrap pour aligner les éléments à gauche -->
+            <input type="text" class="form-control me-2" placeholder="Rechercher..." style="width: 65%" />
+            <button class="btn btn-primary">Filtrer</button>
+            <a routerLink="/addSupplier" class="btn btn-primary ms-2">Ajouter place</a>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <table class="table table-bordered">
+            <thead>
+            <tr class="text-center">
+              <th scope="col">Id</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Range</th>
+              <th scope="col">Reserve</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngIf="places && places.length > 0">
+              <tr *ngFor="let placeItem of places">
+                <td>{{ placeItem.id }}</td>
+                <td>{{ placeItem.numero }}</td>
+                <td>{{ placeItem.rangee }}</td>
+                <td>{{ placeItem.estReservee }}</td>
+                <td>
+                  <a [routerLink]="'/updateSupplier/' + placeItem.id" class="btn btn-secondary btn-sm mr-2"
+                     title="Modifier" style="background: none; border: none; color: royalblue;">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+
+                  <button class="btn btn-secondary btn-sm mr-2" title="Supprimer"
+                          style="background: none; border: none; color: red;">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

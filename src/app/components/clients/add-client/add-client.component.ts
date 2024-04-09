@@ -13,7 +13,9 @@ export class AddClientComponent implements OnInit {
 
   clientForm!: FormGroup;
   nameError: string | null = null;
-  constructor(private formBuilder: FormBuilder,private clientService : ClientsService,private router: Router) { }
+  constructor(private formBuilder: FormBuilder,
+              private clientService : ClientsService,
+              private router: Router) { }
 
   ngOnInit(): void {
      this.initForm()

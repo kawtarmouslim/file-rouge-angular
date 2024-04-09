@@ -1,1 +1,38 @@
-<p>addticket works!</p>
+<form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="clientSelect">Client :</label>
+    <select id="clientSelect" class="form-control" formControlName="clientId">
+      <option *ngFor="let client of clients" [value]="client.id">{{ client.nom }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="filmSelect">Film :</label>
+    <select id="filmSelect" class="form-control" formControlName="filmId">
+      <option *ngFor="let projection of projections" [value]="projection.filmTitre">{{ projection.filmTitre }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="salleSelect">Salle :</label>
+    <select id="salleSelect" class="form-control" formControlName="salleId">
+      <option *ngFor="let projection of projections" [value]="projection.salleNom">{{ projection.salleNom }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="placeSelect">Place :</label>
+    <select id="placeSelect" class="form-control" formControlName="placeId">
+      <option *ngFor="let place of places" [value]="place.id">{{ place.numero }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="idProjection">Id Projection :</label>
+    <select id="idProjection" class="form-control" formControlName="projectionId">
+      <option *ngFor="let projection of projections" [value]="projection.id">{{ projection.id }}</option>
+    </select>
+  </div>
+
+  <!-- Ajout d'un espace après la section Place -->
+  <div class="form-group mt-3">
+    <button type="submit" class="btn btn-primary">Créer Ticket</button>
+  </div>
+</form>
+
