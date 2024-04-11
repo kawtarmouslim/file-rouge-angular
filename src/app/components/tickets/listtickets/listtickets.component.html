@@ -25,17 +25,16 @@
             </tr>
             </thead>
             <tbody>
-            <ng-container *ngIf="tickets && tickets.length > 0">
-              <tr *ngFor="let ticketItem of tickets">
-                <td>{{ ticketItem.id }}</td>
-                <td>{{ ticketItem.clientId }}</td>
-                <td>{{ ticketItem.projectionId }}</td>
-                <td>{{ ticketItem. projectionId}}</td>
-                <td>{{ ticketItem.placeId }}</td>
-                <td>{{ ticketItem.prix }}</td>
+            <tr *ngFor="let ticket of tickets">
+              <td>{{ ticket.id}}</td>
+              <td>{{ ticket.client? ticket.client.id : '' }}</td>
+              <td>{{ ticket.film? ticket.film.titre : '' }}</td>
+              <td>{{ ticket.salle ? ticket.salle.name : '' }}</td>
+              <td>{{ ticket.place? ticket.place.numero : '' }}</td>
+              <td>{{ ticket.prix}}</td>
 
-                <td>
-                  <a [routerLink]="'/updateSupplier/' + ticketItem.id" class="btn btn-secondary btn-sm mr-2"
+              <td>
+                  <a  class="btn btn-secondary btn-sm mr-2"
                      title="Modifier" style="background: none; border: none; color: royalblue;">
                     <i class="bi bi-pencil"></i>
                   </a>
@@ -46,7 +45,7 @@
                   </button>
                 </td>
               </tr>
-            </ng-container>
+
             </tbody>
           </table>
         </div>

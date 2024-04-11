@@ -1,9 +1,12 @@
+import {Salle} from "./salle.model";
+import {Film} from "./film.model";
+
 export interface Projeection {
   id: number;
   dateProjection: Date;
   prix: number;
-  salleId: number;
-  filmId: number;
-  filmTitre:string;
-  salleNom:string;
+  salle:Salle;
+  film:Film;
+  salleId:string;
+  filmId:string;
 }

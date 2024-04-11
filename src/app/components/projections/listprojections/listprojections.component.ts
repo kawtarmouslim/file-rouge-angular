@@ -13,11 +13,8 @@ import {FilmService} from "../../../services/film.service";
 })
 export class ListprojectionsComponent implements OnInit {
   projections :Projeection[]=[]
-  salles:Salle[]=[]
-  films:Film[]=[]
-  constructor(private projectionService:ProjectionService,
-              private salleService:SalleService,
-              private filmService:FilmService) { }
+
+  constructor(private projectionService:ProjectionService,) { }
 
   ngOnInit(): void {
     this.getProjections();
@@ -27,33 +24,6 @@ export class ListprojectionsComponent implements OnInit {
     this.projectionService.getAllProjection().subscribe(
       (projections: Projeection[]) => {
         this.projections = projections;
-
-        for (let projection of this.projections) {
-          if (projection.salleId) { // Vérifiez si salleId est défini
-            this.salleService.getSalleById(projection.salleId).subscribe(
-              (salle: Salle) => {
-                this.salles.push(salle);
-
-                this.filmService.getFilmById(projection.filmId).subscribe(
-                  (film: Film) => {
-                    this.films.push(film);
-
-                    if (this.salles.length === this.projections.length &&
-                      this.films.length === this.projections.length) {
-                      // Toutes les salles et tous les films ont été récupérés
-                    }
-                  },
-                  (error) => {
-                    console.log(error);
-                  }
-                );
-              },
-              (error) => {
-                console.log(error);
-              }
-            );
-          }
-        }
       },
       (error) => {
         console.log(error);

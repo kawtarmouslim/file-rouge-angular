@@ -8,6 +8,11 @@ import {ProjectionService} from "../../../services/projection.service";
 import {Ticket} from "../../../models/ticket.model";
 import {Place} from "../../../models/place.model";
 import {PlaceService} from "../../../services/place.service";
+import {Router} from "@angular/router";
+import {Salle} from "../../../models/salle.model";
+import {Film} from "../../../models/film.model";
+import {SalleService} from "../../../services/salle.service";
+import {FilmService} from "../../../services/film.service";
 
 @Component({
   selector: 'app-addticket',
@@ -19,87 +24,70 @@ export class AddticketComponent implements OnInit {
   errorMessage: string = '';
   clients: Client[] = [];
   places: Place[] = [];
-  projections: { dateProjection: any; salleNom: any; id: any; filmTitre: any }[] = [];
+  salles: Salle[] = [];
+  film: Film[] = [];
+  projections: Projeection[] = [];
 
 
   constructor(private formBuilder: FormBuilder,
               private ticketService: TicketService,
-              private clientServive:ClientsService,
-              private placeService:PlaceService,
-              private projectionService:ProjectionService) { }
+              private clientServive: ClientsService,
+              private placeService: PlaceService,
+              private router: Router,
+              private projectionService: ProjectionService,
+              private salleService: SalleService,
+              private filmService: FilmService) {
+  }
 
   ngOnInit(): void {
-    this.initForm()
-    this.fetchClients();
-    this.fetchProjections();
-    this.fetchPlaces()
+    this.clientServive.getAllClients().subscribe(
+      data => {
+        this.clients = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+    this.placeService.getAllPlaces().subscribe(
+      data => {
+        this.places = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+    this.salleService.getAllSalles().subscribe(
+      data => {
+        this.salles = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+    this.filmService.getAllFilms().subscribe(
+      data => {
+        this.film = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+
+
+    this.initForm();
   }
+
   initForm(): void {
-   this.ticketForm = this.formBuilder.group({
-      clientId: [''],
-      filmId: [''], // Add this line
-      projectionId: [''],
-      placeId: [''],
-     salleId: ['']
-   });
-  }
-  fetchClients(): void {
-    // Appeler le service pour récupérer les clients depuis la base de données
-    // Exemple :
-    this.clientServive.getAllClients().subscribe((data: any[]) => {
-     this.clients = data;
-    });
-  }
-  fetchPlaces(): void {
-    // Appeler le service pour récupérer les clients depuis la base de données
-    // Exemple :
-    this.placeService.getAllPlaces().subscribe((data: any[]) => {
-      this.places = data;
-    });
-  }
-
-
-
-  fetchProjections(): void {
-    this.projectionService.getAllProjection().subscribe((data: any[]) => {
-      // Mappez les données pour extraire les titres des films de chaque projection
-      this.projections = data.map(projection => ({
-        id: projection.id,
-        dateProjection: projection.dateProjection,
-        filmTitre: projection.film ? projection.film.titre : '', // Vérification si 'film' existe avant d'accéder à 'titre'
-        salleNom: projection.salle ? projection.salle.name : '' // Vérification si 'salle' existe avant d'accéder à 'name'
-      }));
+    this.ticketForm = this.formBuilder.group({
+      client: ['', Validators.required],
+      // projection: ['', Validators.required],
+      place: ['', Validators.required],
+      salle: ['', Validators.required],
+      film: ['', Validators.required]
     });
   }
 
 
   onSubmit(): void {
-    if (this.ticketForm.invalid) {
-      return;
-    }
-
-    const ticketData: Ticket = {
-      id: 0, // Remplacez null par la valeur appropriée si nécessaire
-      prix: 0, // Remplacez 0 par la valeur appropriée si nécessaire
-      clientId: this.ticketForm.value.clientId,
-      projectionId: this.ticketForm.value.projectionId,
-      placeId: this.ticketForm.value.placeId
-    };
-
-    this.ticketService.creerTicket(ticketData).subscribe(
-      (response) => {
-        console.log('Ticket créé avec succès', response);
-        // Réinitialiser le formulaire après la création du ticket
-        this.ticketForm.reset();
-      },
-      (error) => {
-        console.log('Erreur lors de la création du ticket', error);
-        if (error.status === 400) {
-          this.errorMessage = error.error.message; // Afficher le message d'erreur
-        }
-      }
-    );
   }
-
-
 }

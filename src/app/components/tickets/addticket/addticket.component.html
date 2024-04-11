@@ -1,34 +1,42 @@
 <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="clientSelect">Client :</label>
-    <select id="clientSelect" class="form-control" formControlName="clientId">
-      <option *ngFor="let client of clients" [value]="client.id">{{ client.nom }}</option>
+  <div class="form-group col-md-4">
+    <label for="client">Client :</label>
+    <select id="client" class="form-control" formControlName="client">
+      <option *ngFor="let client of clients" [value]="client.id" required>{{ client.nom }}</option>
     </select>
+    <div *ngIf="ticketForm.get('client')?.invalid && (ticketForm.get('client')?.dirty || ticketForm.get('client')?.touched)" class="text-danger">
+      La client est requise.
+    </div>
   </div>
-  <div class="form-group">
-    <label for="filmSelect">Film :</label>
-    <select id="filmSelect" class="form-control" formControlName="filmId">
-      <option *ngFor="let projection of projections" [value]="projection.filmTitre">{{ projection.filmTitre }}</option>
+  <div class="form-group col-md-4">
+    <label for="place">Place :</label>
+    <select id="place" class="form-control" formControlName="place">
+      <option *ngFor="let place of places" [value]="place.id" required>{{ place.numero }}</option>
     </select>
+    <div *ngIf="ticketForm.get('place')?.invalid && (ticketForm.get('place')?.dirty || ticketForm.get('place')?.touched)" class="text-danger">
+      La place est requise.
+    </div>
   </div>
-  <div class="form-group">
-    <label for="salleSelect">Salle :</label>
-    <select id="salleSelect" class="form-control" formControlName="salleId">
-      <option *ngFor="let projection of projections" [value]="projection.salleNom">{{ projection.salleNom }}</option>
+  <div class="form-group col-md-4">
+    <label for="salle">Salle :</label>
+    <select id="salle" class="form-control" formControlName="salle">
+      <option *ngFor="let salle of salles" [value]="salle.id" required>{{ salle.name }}</option>
     </select>
+    <div *ngIf="ticketForm.get('salle')?.invalid && (ticketForm.get('salle')?.dirty || ticketForm.get('salle')?.touched)" class="text-danger">
+      La salle est requise.
+    </div>
   </div>
-  <div class="form-group">
-    <label for="placeSelect">Place :</label>
-    <select id="placeSelect" class="form-control" formControlName="placeId">
-      <option *ngFor="let place of places" [value]="place.id">{{ place.numero }}</option>
+  <div class="form-group col-md-4">
+    <label for="film">Film :</label>
+    <select id="film" class="form-control" formControlName="film">
+      <option *ngFor="let film of film" [value]="film.id" required>{{ film.titre }}</option>
+
     </select>
+    <div *ngIf="ticketForm.get('film')?.invalid && (ticketForm.get('film')?.dirty || ticketForm.get('film')?.touched)" class="text-danger">
+      La film est requise.
+    </div>
   </div>
-  <div class="form-group">
-    <label for="idProjection">Id Projection :</label>
-    <select id="idProjection" class="form-control" formControlName="projectionId">
-      <option *ngFor="let projection of projections" [value]="projection.id">{{ projection.id }}</option>
-    </select>
-  </div>
+
 
   <!-- Ajout d'un espace après la section Place -->
   <div class="form-group mt-3">

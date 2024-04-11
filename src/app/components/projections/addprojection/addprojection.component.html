@@ -19,19 +19,19 @@
               </div>
               <div class="form-group col-md-4">
                 <label for="salle">Salle :</label>
-                <select id="salle" class="form-control" formControlName="salleId">
+                <select id="salle" class="form-control" formControlName="salle">
                   <option *ngFor="let salle of salles" [value]="salle.id" required>{{ salle.name }}</option>
                 </select>
-                <div *ngIf="projectionForm.get('salleId')?.invalid && (projectionForm.get('salleId')?.dirty || projectionForm.get('salleId')?.touched)" class="text-danger">
+                <div *ngIf="projectionForm.get('salle')?.invalid && (projectionForm.get('salle')?.dirty || projectionForm.get('salle')?.touched)" class="text-danger">
                   La salle est requise.
                 </div>
               </div>
               <div class="form-group col-md-4">
                 <label for="filmId">Film :</label>
-                <select id="filmId" class="form-control" formControlName="filmId">
+                <select id="filmId" class="form-control" formControlName="film">
                   <option *ngFor="let film of films" [value]="film.id" required>{{ film.titre }}</option>
                 </select>
-                <div *ngIf="projectionForm.get('filmId')?.invalid && (projectionForm.get('filmId')?.dirty || projectionForm.get('filmId')?.touched)" class="text-danger">
+                <div *ngIf="projectionForm.get('film')?.invalid && (projectionForm.get('film')?.dirty || projectionForm.get('film')?.touched)" class="text-danger">
                   Le film est requis.
                 </div>
               </div>

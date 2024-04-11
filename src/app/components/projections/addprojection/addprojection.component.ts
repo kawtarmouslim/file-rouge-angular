@@ -51,46 +51,53 @@ export class AddprojectionComponent implements OnInit {
   initForm(): void {
     this.projectionForm = this.formBuilder.group({
       dateProjection: ['', Validators.required],
-      prix: [1, [Validators.required, Validators.min(1)]],
-      salleId: [null, Validators.required],
-      filmId: [null, Validators.required]
+      prix: ["", Validators.required],
+      salle: ['', Validators.required],
+      film: ['', Validators.required]
 
 
     });
 
   }
 
-  onSubmit(){
-    const formData = this.projectionForm.value;
-    const dateProjectionValue = this.datePipe.transform(formData.dateProjection, 'yyyy-MM-ddTHH:mm:ss');
-    const salleIdValue = parseInt(formData.salleId);
-    const filmIdValue = parseInt(formData.salleId);
-    console.log(dateProjectionValue, salleIdValue,filmIdValue);
+  onSubmit() {
+    if (this.projectionForm.valid) {
+      const formData = this.projectionForm.value;
+      const dateProjectionValue = this.datePipe.transform(formData.dateProjection, 'yyyy-MM-ddTHH:mm:ss');
+      const salleIdValue = formData.salle;
+      const filmIdValue = formData.film;
 
-    const modifiedFormData = {
-      dateProjection: dateProjectionValue,
-      prix: formData.prix,
-      salleId: salleIdValue,
-      filmId: filmIdValue
+      // Fetch the full salle and film objects based on the IDs
+      this.salleService.getSalleById(salleIdValue).subscribe(salle => {
+        this.filmService.getFilmById(filmIdValue).subscribe(film => {
+          const projectionData = {
+            dateProjection: dateProjectionValue,
+            prix: formData.prix,
+            salle: salle, // Use the full salle object
+            film: film // Use the full film object
+          };
 
-
-    };
-    this.projectionService.createProjection(modifiedFormData).subscribe(
-      (response) => {
-        console.log("Données du projection envoyées avec succès", response);
-        this.router.navigate(['projection/all']);
-      },
-      (error) => {
-        console.log(error.message);
-        if (error.status === 400) {
-          const errorMessage = error.error.message;
-          console.log("Message d'erreur :", errorMessage);
-
-          this.errorMessage = errorMessage;}
-      }
-    );
-
+          this.projectionService.createProjection(projectionData).subscribe(
+            (response) => {
+              console.log("Données de projection créées avec succès", response);
+              this.router.navigate(['projection/all']);
+            },
+            (error) => {
+              console.error("Erreur lors de la création de la projection", error);
+              if (error.status === 400) {
+                const errorMessage = error.error.message;
+                console.error("Message d'erreur :", errorMessage);
+                this.errorMessage = errorMessage;
+              }
+            }
+          );
+        });
+      });
+    } else {
+      console.error("Le formulaire n'est pas valide.");
+    }
   }
+
 
 
 

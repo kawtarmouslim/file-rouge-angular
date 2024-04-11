@@ -25,16 +25,8 @@
                 <td>{{ projection.id}}</td>
                 <td>{{ projection.dateProjection | date:'yyyy/MM/dd' }}</td>
                 <td>{{ projection.prix }}</td>
-                <td>
-                  <td *ngIf="salles[projections.indexOf(projection)]">
-                    {{ salles[projections.indexOf(projection)].name }}
-                  </td>
-
-                <td>
-                  <td *ngIf="films[projections.indexOf(projection)]">
-                    {{ films[projections.indexOf(projection)].titre }}
-                  </td>
-
+                <td>{{ projection.salle ? projection.salle.name : '' }}</td>
+                <td>{{ projection.film ? projection.film.titre : '' }}</td>
                 <td>
                   <a [routerLink]="'/updateProjection/' + projection.id" class="btn btn-secondary btn-sm mr-2" title="Modifier">
                     <i class="bi bi-pencil"></i>

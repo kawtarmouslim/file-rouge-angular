@@ -18,6 +18,7 @@ import { ListclientsComponent } from './components/clients/listclients/listclien
 import {ModifierclientComponent} from "./components/clients/modifierclient/modifierclient.component";
 import {ModifiersalleComponent} from "./components/salles/modifiersalle/modifiersalle.component";
 import {ModifierfilmComponent} from "./components/films/modifierfilm/modifierfilm.component";
+import {AuthenticationComponent} from "./components/authentication/authentication.component";
 const routes: Routes = [
 
   { path: '', component: DashboardComponent },
@@ -44,6 +45,8 @@ const routes: Routes = [
   { path: 'film/all', component: ListfilmsComponent },
   { path: 'addFilm', component: AddfilmComponent },
   { path: 'updateFilm/:id', component: ModifierfilmComponent },
+  { path: 'auth', component: AuthenticationComponent },
+  { path: 'projection/all', component: ListprojectionsComponent },
 ];
 
 @NgModule({
