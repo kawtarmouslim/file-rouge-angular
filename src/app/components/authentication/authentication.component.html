@@ -3,9 +3,8 @@
     <div class="card-body">
       <div class="form-group">
         <label class="text-muted">Email</label>
-        <input type="email" class="form-control form-font rounded-0 mt-1 mb-3"
-               [ngClass]="{'is-invalid': submitted && loginFormGroup.controls['username'].errors}" formControlName="username">
-
+        <input type="text" class="form-control form-font rounded-0 mt-1 mb-3"
+               formControlName="username">
       </div>
 
       <div class="form-group">

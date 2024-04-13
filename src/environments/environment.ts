@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendHost: undefined
+  backendHost: 'http://localhost:8088/api/auth'
 };
 
 /*

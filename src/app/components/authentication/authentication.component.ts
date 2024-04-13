@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-authentication',
@@ -10,7 +11,9 @@ import {AuthService} from "../../services/auth.service";
 export class AuthenticationComponent implements OnInit {
   loginFormGroup !: FormGroup;
   submitted : boolean =false;
-  constructor(private fb : FormBuilder, private authService : AuthService) { }
+  constructor(private fb : FormBuilder,
+              private authService : AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.loginFormGroup = this.fb.group({
@@ -20,14 +23,23 @@ export class AuthenticationComponent implements OnInit {
 
   }
 
+
   onLogin() {
-    this.submitted = true
-    if (this.loginFormGroup.invalid) return;
+    console.log(this.loginFormGroup.value);
+    this.submitted = true;
+   // if (this.loginFormGroup.invalid) return;
     this.authService.login(this.loginFormGroup.value).subscribe({
-      next : loginResponse =>{
-        console.log(loginResponse)
+      next: loginResponse => {
+        this.authService.saveToken(loginResponse);
+        console.log(loginResponse);
+        this.router.navigate(['/login']);
+      },
+      error: err => {
+        console.error("Erreur lors de la connexion :", err);
+
       }
     });
   }
+
 
 }

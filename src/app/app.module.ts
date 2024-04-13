@@ -19,7 +19,7 @@ import { AddticketComponent } from './components/tickets/addticket/addticket.com
 import { ListticketsComponent } from './components/tickets/listtickets/listtickets.component';
 import { AddprojectionComponent } from './components/projections/addprojection/addprojection.component';
 import { ListprojectionsComponent } from './components/projections/listprojections/listprojections.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 
@@ -28,6 +28,7 @@ import { ModifierclientComponent } from './components/clients/modifierclient/mod
 import { ModifiersalleComponent } from './components/salles/modifiersalle/modifiersalle.component';
 import { ModifierfilmComponent } from './components/films/modifierfilm/modifierfilm.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
+import {AuthInterceptorServiceService} from "./services/auth-interceptor-service.service";
 
 
 
@@ -65,7 +66,11 @@ import { AuthenticationComponent } from './components/authentication/authenticat
     HttpClientModule,
     FormsModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,{
+    provide : HTTP_INTERCEPTORS,
+    useClass : AuthInterceptorServiceService,
+    multi : true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
