@@ -13,6 +13,10 @@ export interface Ticket {
   film:Film;
   salle:Salle;
   projection: Projeection;
+  salleId:string;
+  filmId:string;
+  clientId:string;
+  projectionId:string;
 
 
 }

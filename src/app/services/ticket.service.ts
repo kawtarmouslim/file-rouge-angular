@@ -15,7 +15,7 @@ export class TicketService {
   constructor(private http:HttpClient) { }
 
   createTicket(ticket: Ticket): Observable<Ticket> {
-    return this.http.post<Ticket>(`${this.apiUrl}\add`, ticket);
+    return this.http.post<Ticket>(`${this.apiUrl}/add`, ticket);
   }
 
   getAllTickets(): Observable<Ticket[]> {

@@ -67,14 +67,13 @@ export class AddprojectionComponent implements OnInit {
       const salleIdValue = formData.salle;
       const filmIdValue = formData.film;
 
-      // Fetch the full salle and film objects based on the IDs
       this.salleService.getSalleById(salleIdValue).subscribe(salle => {
         this.filmService.getFilmById(filmIdValue).subscribe(film => {
           const projectionData = {
             dateProjection: dateProjectionValue,
             prix: formData.prix,
-            salle: salle, // Use the full salle object
-            film: film // Use the full film object
+            salle: salle,
+            film: film
           };
 
           this.projectionService.createProjection(projectionData).subscribe(

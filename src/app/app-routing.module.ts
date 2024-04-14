@@ -19,6 +19,9 @@ import {ModifierclientComponent} from "./components/clients/modifierclient/modif
 import {ModifiersalleComponent} from "./components/salles/modifiersalle/modifiersalle.component";
 import {ModifierfilmComponent} from "./components/films/modifierfilm/modifierfilm.component";
 import {AuthenticationComponent} from "./components/authentication/authentication.component";
+import {
+  ModificationprojectionComponent
+} from "./components/projections/modificationprojection/modificationprojection.component";
 const routes: Routes = [
 
   { path: 'dashboard', component: DashboardComponent },
@@ -34,9 +37,11 @@ const routes: Routes = [
   { path: 'addfilm', component: AddfilmComponent },
   { path: 'listfilms', component: ListfilmsComponent },
   { path: 'addticket', component: AddticketComponent },
+  { path: 'ticket/all', component: ListticketsComponent },
   { path: 'listtickets', component: ListticketsComponent },
   { path: 'addprojection', component: AddprojectionComponent },
   { path: 'listprojections', component: ListprojectionsComponent },
+  { path: 'updateProjection/:id', component: ModificationprojectionComponent },
   { path: 'addSupplier', component: AddClientComponent },
   { path: 'updateSupplier/:id', component: ModifierclientComponent },
   { path: 'supplier/all', component: ListclientsComponent },

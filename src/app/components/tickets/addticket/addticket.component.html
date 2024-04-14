@@ -5,7 +5,7 @@
       <option *ngFor="let client of clients" [value]="client.id" required>{{ client.nom }}</option>
     </select>
     <div *ngIf="ticketForm.get('client')?.invalid && (ticketForm.get('client')?.dirty || ticketForm.get('client')?.touched)" class="text-danger">
-      La client est requise.
+      Le client est requis.
     </div>
   </div>
   <div class="form-group col-md-4">
@@ -30,17 +30,22 @@
     <label for="film">Film :</label>
     <select id="film" class="form-control" formControlName="film">
       <option *ngFor="let film of film" [value]="film.id" required>{{ film.titre }}</option>
-
     </select>
     <div *ngIf="ticketForm.get('film')?.invalid && (ticketForm.get('film')?.dirty || ticketForm.get('film')?.touched)" class="text-danger">
-      La film est requise.
+      Le film est requis.
+    </div>
+  </div>
+  <div class="form-group col-md-4">
+    <label for="projection">Projection :</label>
+    <select id="projection" class="form-control" formControlName="projection">
+      <option *ngFor="let projection of projections" [value]="projection.id" required>{{ projection.dateProjection }}</option>
+    </select>
+    <div *ngIf="ticketForm.get('projection')?.invalid && (ticketForm.get('projection')?.dirty || ticketForm.get('projection')?.touched)" class="text-danger">
+      La projection est requise.
     </div>
   </div>
 
-
-  <!-- Ajout d'un espace après la section Place -->
   <div class="form-group mt-3">
     <button type="submit" class="btn btn-primary">Créer Ticket</button>
   </div>
 </form>
-

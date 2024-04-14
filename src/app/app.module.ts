@@ -29,6 +29,9 @@ import { ModifiersalleComponent } from './components/salles/modifiersalle/modifi
 import { ModifierfilmComponent } from './components/films/modifierfilm/modifierfilm.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import {AuthInterceptorServiceService} from "./services/auth-interceptor-service.service";
+import { ModificationprojectionComponent } from './components/projections/modificationprojection/modificationprojection.component';
+import { ModificationplaceComponent } from './components/places/modificationplace/modificationplace.component';
+import { ModificationticketComponent } from './components/tickets/modificationticket/modificationticket.component';
 
 
 
@@ -56,6 +59,9 @@ import {AuthInterceptorServiceService} from "./services/auth-interceptor-service
     ModifiersalleComponent,
     ModifierfilmComponent,
     AuthenticationComponent,
+    ModificationprojectionComponent,
+    ModificationplaceComponent,
+    ModificationticketComponent,
 
 
   ],

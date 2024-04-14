@@ -5,7 +5,7 @@ import {Projeection} from "../../../models/projeection.model";
 import {TicketService} from "../../../services/ticket.service";
 import {ClientsService} from "../../../services/clients.service";
 import {ProjectionService} from "../../../services/projection.service";
-import {Ticket} from "../../../models/ticket.model";
+;
 import {Place} from "../../../models/place.model";
 import {PlaceService} from "../../../services/place.service";
 import {Router} from "@angular/router";
@@ -13,6 +13,7 @@ import {Salle} from "../../../models/salle.model";
 import {Film} from "../../../models/film.model";
 import {SalleService} from "../../../services/salle.service";
 import {FilmService} from "../../../services/film.service";
+import {Ticket} from "../../../models/ticket.model";
 
 @Component({
   selector: 'app-addticket',
@@ -72,6 +73,14 @@ export class AddticketComponent implements OnInit {
         console.log(error);
       }
     )
+    this.projectionService.getAllProjection().subscribe(
+      data => {
+        this.projections = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
 
 
     this.initForm();
@@ -80,15 +89,65 @@ export class AddticketComponent implements OnInit {
   initForm(): void {
     this.ticketForm = this.formBuilder.group({
       client: ['', Validators.required],
-      // projection: ['', Validators.required],
+      projection: ['', Validators.required],
       place: ['', Validators.required],
       salle: ['', Validators.required],
       film: ['', Validators.required]
     });
   }
 
+  onSubmit() {
+    console.log(this.ticketForm.value); // Ajoutez cette ligne pour voir les valeurs du formulaire dans la console
 
-  onSubmit(): void {
+    if (this.ticketForm.valid) {
+      const formData = this.ticketForm.value;
+      const clientIdValue = formData.client;
+      const placeIdValue = formData.place; // Correction ici
+      const projectionIdValue = formData.projection; // Correction ici
+      const salleIdValue = formData.salle;
+      const filmIdValue = formData.film;
+
+      this.clientServive.getClientById(clientIdValue).subscribe(client => { // Correction du nom de la méthode
+        this.placeService.getPlaceById(placeIdValue).subscribe(place => { // Correction du nom de la méthode
+          this.projectionService.getProjectionById(projectionIdValue).subscribe(projection => { // Correction du nom de la méthode
+            this.salleService.getSalleById(salleIdValue).subscribe(salle => {
+              this.filmService.getFilmById(filmIdValue).subscribe(film => {
+                const ticketData = {
+
+                  client: client,
+                  place: place,
+                  projection: projection,
+                  salle: salle,
+                  film: film
+                };
+
+                this.ticketService.createTicket(<Ticket>ticketData).subscribe(
+                  (response) => {
+                    console.log(ticketData)
+                    console.log("Ticket créé avec succès", response);
+                    this.router.navigate(['/ticket/all']); // Redirige vers la liste des tickets après création
+                  },
+                  (error) => {
+                    console.error("Erreur lors de la création du ticket", error);
+                    if (error.status === 400) {
+                      const errorMessage = error.error.message;
+                      console.error("Message d'erreur :", errorMessage);
+                      this.errorMessage = errorMessage;
+                    }
+                  }
+                );
+              });
+            });
+          });
+        });
+      });
+    } else {
+      console.error("Le formulaire n'est pas valide.");
+    }
   }
+
+
+
+
 
 }
